@@ -65,24 +65,6 @@ namespace Day7
             Console.WriteLine($"Found {parentBags.Count} bags that can contain a shiny gold bag.");
             Console.WriteLine($"These bags have {parentBags.Select(n => bags[n].Color).Distinct().Count()} distinct colors.");
 
-            //bagsToProcess.Enqueue("shiny gold bag");
-            //HashSet<string> childBags = new HashSet<string>();
-
-            //while (bagsToProcess.Any())
-            //{
-            //    string currentBagName = bagsToProcess.Dequeue();
-            //    Bag currentBag = bags[currentBagName];
-            //    foreach (var childBagMap in currentBag.CanContainBags)
-            //    {
-
-            //        if (!childBags.Contains(childBag.Name))
-            //        {
-            //            bagsToProcess.Enqueue(childBag.Name);
-            //            childBags.Add(childBag.Name);
-            //        }
-            //    }
-            //}
-
             Console.WriteLine($"Found {bags["shiny gold bag"].GetNumberOfChildBags()} bags that can be contained by a shiny gold bag.");
         }
     }
