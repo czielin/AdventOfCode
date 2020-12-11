@@ -6,8 +6,6 @@ namespace Day11
 {
     class Program
     {
-        //private static string[] lines;
-
         static async Task Main(string[] args)
         {
             var lines = await File.ReadAllLinesAsync("input.txt");
