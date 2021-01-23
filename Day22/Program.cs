@@ -70,7 +70,6 @@ namespace Day22
         {
             HashSet<string> previousRounds = new HashSet<string>();
             int round = 1;
-            //(int WinningPlayer, List<int> WinningHand) result = (0, null);
             int winner = 0;
             while (player1.Any() && player2.Any())
             {
