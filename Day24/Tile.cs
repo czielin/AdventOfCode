@@ -14,6 +14,7 @@ namespace Day24
         {
             this.x = x;
             this.y = y;
+            TileLocations.Add((x, y), this);
         }
 
         public static Dictionary<(int x, int y), Tile> TileLocations = new Dictionary<(int x, int y), Tile>();
@@ -24,7 +25,7 @@ namespace Day24
             {
                 if (!TileLocations.ContainsKey((x + 2, y)))
                 {
-                    TileLocations.Add((x + 2, y), new Tile(x + 2, y));
+                    new Tile(x + 2, y);
                 }
                 return TileLocations[(x + 2, y)];
             }
@@ -35,7 +36,7 @@ namespace Day24
             {
                 if (!TileLocations.ContainsKey((x + 1, y - 1)))
                 {
-                    TileLocations.Add((x + 1, y - 1), new Tile(x + 1, y - 1));
+                    new Tile(x + 1, y - 1);
                 }
                 return TileLocations[(x + 1, y - 1)];
             }
@@ -46,7 +47,7 @@ namespace Day24
             {
                 if (!TileLocations.ContainsKey((x - 1, y - 1)))
                 {
-                    TileLocations.Add((x - 1, y - 1), new Tile(x - 1, y - 1));
+                    new Tile(x - 1, y - 1);
                 }
                 return TileLocations[(x - 1, y - 1)];
             }
@@ -57,7 +58,7 @@ namespace Day24
             {
                 if (!TileLocations.ContainsKey((x - 2, y)))
                 {
-                    TileLocations.Add((x - 2, y), new Tile(x - 2, y));
+                    new Tile(x - 2, y);
                 }
                 return TileLocations[(x - 2, y)];
             }
@@ -68,7 +69,7 @@ namespace Day24
             {
                 if (!TileLocations.ContainsKey((x - 1, y + 1)))
                 {
-                    TileLocations.Add((x - 1, y + 1), new Tile(x - 1, y + 1));
+                    new Tile(x - 1, y + 1);
                 }
                 return TileLocations[(x - 1, y + 1)];
             }
@@ -79,14 +80,27 @@ namespace Day24
             {
                 if (!TileLocations.ContainsKey((x + 1, y + 1)))
                 {
-                    TileLocations.Add((x + 1, y + 1), new Tile(x + 1, y + 1));
+                    new Tile(x + 1, y + 1);
                 }
                 return TileLocations[(x + 1, y + 1)];
+            }
+        }
+        public int BlackNeighbors
+        {
+            get
+            {
+                return (East.Color == Color.Black ? 1 : 0)
+                    + (SouthEast.Color == Color.Black ? 1 : 0)
+                    + (SouthWest.Color == Color.Black ? 1 : 0)
+                    + (West.Color == Color.Black ? 1 : 0)
+                    + (NorthWest.Color == Color.Black ? 1 : 0)
+                    + (NorthEast.Color == Color.Black ? 1 : 0);
             }
         }
         public void Flip()
         {
             Color = Color == Color.White ? Color.Black : Color.White;
         }
+
     }
 }

@@ -11,7 +11,7 @@ namespace Day24
     {
         static async Task Main(string[] args)
         {
-            var lines = await File.ReadAllLinesAsync("input.txt");
+            var lines = await File.ReadAllLinesAsync("sample_input.txt");
 
             Tile referenceTile = new Tile(0, 0);
 
@@ -61,6 +61,31 @@ namespace Day24
             }
 
             Console.WriteLine($"Black tiles: { Tile.TileLocations.Values.Count(t => t.Color == Color.Black) }");
+
+            for (int day = 1; day <= 100; day++)
+            {
+                List<Tile> tilesToFlip = new List<Tile>();
+                List<Tile> existingTiles = Tile.TileLocations.Values.ToList();
+
+                foreach (Tile tile in existingTiles)
+                {
+                    if (tile.Color == Color.Black && (tile.BlackNeighbors == 0 || tile.BlackNeighbors > 2))
+                    {
+                        tilesToFlip.Add(tile);
+                    }
+                    else if (tile.Color == Color.White && tile.BlackNeighbors == 2)
+                    {
+                        tilesToFlip.Add(tile);
+                    }
+                }
+
+                foreach (Tile tile in tilesToFlip)
+                {
+                    tile.Flip();
+                }
+
+                Console.WriteLine($"Number of black tiles on Day {day} is: { Tile.TileLocations.Values.Count(t => t.Color == Color.Black) }");
+            }
         }
     }
 }
