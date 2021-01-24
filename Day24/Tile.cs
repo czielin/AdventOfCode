@@ -101,6 +101,5 @@ namespace Day24
         {
             Color = Color == Color.White ? Color.Black : Color.White;
         }
-
     }
 }

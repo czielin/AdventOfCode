@@ -9,9 +9,9 @@ namespace Day24
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static async Task Main()
         {
-            var lines = await File.ReadAllLinesAsync("sample_input.txt");
+            var lines = await File.ReadAllLinesAsync("input.txt");
 
             Tile referenceTile = new Tile(0, 0);
 
@@ -58,6 +58,8 @@ namespace Day24
                 }
 
                 currentTile.Flip();
+                // Hack to fill in neighoring tiles. Should be done cleaner.
+                int blackNeighors = currentTile.BlackNeighbors;
             }
 
             Console.WriteLine($"Black tiles: { Tile.TileLocations.Values.Count(t => t.Color == Color.Black) }");
