@@ -34,6 +34,33 @@ namespace Day2_2021
             }
 
             Console.WriteLine($"Depth * horizontal position: {depth * horizontalPosition}");
+
+            horizontalPosition = 0;
+            depth = 0;
+            int aim = 0;
+
+            for (int lineCount = 0; lineCount < lines.Length; lineCount++)
+            {
+                var lineParts = lines[lineCount].Split(' ');
+                string action = lineParts[0];
+                int units = int.Parse(lineParts[1]);
+
+                switch (action)
+                {
+                    case "forward":
+                        horizontalPosition += units;
+                        depth += aim * units;
+                        break;
+                    case "down":
+                        aim += units;
+                        break;
+                    case "up":
+                        aim -= units;
+                        break;
+                }
+            }
+
+            Console.WriteLine($"Depth * horizontal position: {depth * horizontalPosition}");
         }
     }
 }
