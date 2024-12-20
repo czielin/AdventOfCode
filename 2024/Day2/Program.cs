@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-bool isReportSafe(IEnumerable<int> levels)
+﻿bool isReportSafe(IEnumerable<int> levels)
 {
     bool increasing = levels.ElementAt(0) < levels.ElementAt(1);
     bool isSafe = true;
