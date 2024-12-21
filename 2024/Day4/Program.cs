@@ -1,5 +1,8 @@
-﻿var lines = File.ReadAllLines("input.txt");
+﻿using System.Text;
+
+var lines = File.ReadAllLines("input.txt");
 int xmasCount = 0;
+int xmasShapeCount = 0;
 int columnCount = lines[0].Length;
 int rowCount = lines.Length;
 
@@ -15,10 +18,12 @@ for (int row  = 0; row < rowCount; row++)
         xmasCount += spellsXmas(row, column, -1, 0) ? 1 : 0;
         xmasCount += spellsXmas(row, column, -1, -1) ? 1 : 0;
         xmasCount += spellsXmas(row, column, 0, 1) ? 1 : 0;
+        xmasShapeCount += isXmas(row, column) ? 1 : 0;
     }
 }
 
 Console.WriteLine($"XMASs found: {xmasCount}");
+Console.WriteLine($"XMAS shapes found: {xmasShapeCount}");
 Console.ReadLine();
 
 bool spellsXmas(int row, int column, int rowStep, int columnStep)
@@ -37,3 +42,19 @@ bool spellsXmas(int row, int column, int rowStep, int columnStep)
     return isXmas;
 }
 
+bool isXmas(int row, int column)
+{
+    bool isXmas = false;
+    // Check boundaries
+    if (lines[row][column] == 'A' && row < rowCount - 1 && row > 0 && column < columnCount - 1 && column > 0)
+    {
+        StringBuilder cornersBuilder = new StringBuilder(4);
+        cornersBuilder.Append(lines[row - 1][column - 1]);
+        cornersBuilder.Append(lines[row - 1][column + 1]);
+        cornersBuilder.Append(lines[row + 1][column + 1]);
+        cornersBuilder.Append(lines[row + 1][column - 1]);
+        string corners = cornersBuilder.ToString();
+        isXmas = corners == "MMSS" || corners == "SMMS" || corners == "SSMM" || corners == "MSSM";
+    }
+    return isXmas;
+}
